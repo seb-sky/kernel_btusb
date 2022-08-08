@@ -16,7 +16,7 @@ patch = {
 
 def bt_patch():
     os.system('cp ' + patch['path'] + patch['file'] + ' .')
-    os.system('zstd -d ' + patch['file'])
+    os.system('zstd -d -f ' + patch['file'])
     with open(patch['file'][:-4], 'r+b') as fis:
         haystack = mmap.mmap(fis.fileno(), length=0, access=mmap.ACCESS_READ)
         patch['offset'] = haystack.find(patch['id_search'])
